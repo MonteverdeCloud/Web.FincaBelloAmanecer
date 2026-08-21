@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<svg width="2375" height="3222.206" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <defs>
+  <!-- Sombras para efecto de relieve -->
+  <filter id="sombra" x="-5%" y="-5%" width="115%" height="115%">
+   <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.25"/>
+  </filter>
+  <filter id="sombraSuave" x="-5%" y="-5%" width="115%" height="115%">
+   <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.2"/>
+  </filter>
+  <filter id="sombraLigera" x="-5%" y="-5%" width="115%" height="115%">
+   <feDropShadow dx="1" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.15"/>
+  </filter>
+  <!-- Degradados para el fondo y relieve -->
+  <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+   <stop offset="0%" stop-color="#e8f5e9"/>
+   <stop offset="40%" stop-color="#c8e6c9"/>
+   <stop offset="70%" stop-color="#a5d6a7"/>
+   <stop offset="100%" stop-color="#81c784"/>
+  </linearGradient>
+  <radialGradient id="montana1" cx="35%" cy="45%" r="55%">
+   <stop offset="0%" stop-color="#a5d6a7" stop-opacity="0.6"/>
+   <stop offset="40%" stop-color="#81c784" stop-opacity="0.4"/>
+   <stop offset="70%" stop-color="#66bb6a" stop-opacity="0.2"/>
+   <stop offset="100%" stop-color="#4caf50" stop-opacity="0.05"/>
+  </radialGradient>
+  <radialGradient id="montana2" cx="60%" cy="35%" r="50%">
+   <stop offset="0%" stop-color="#a5d6a7" stop-opacity="0.5"/>
+   <stop offset="50%" stop-color="#81c784" stop-opacity="0.3"/>
+   <stop offset="80%" stop-color="#66bb6a" stop-opacity="0.15"/>
+   <stop offset="100%" stop-color="#4caf50" stop-opacity="0.03"/>
+  </radialGradient>
+  <radialGradient id="montana3" cx="40%" cy="55%" r="45%">
+   <stop offset="0%" stop-color="#a5d6a7" stop-opacity="0.5"/>
+   <stop offset="50%" stop-color="#81c784" stop-opacity="0.3"/>
+   <stop offset="80%" stop-color="#66bb6a" stop-opacity="0.15"/>
+   <stop offset="100%" stop-color="#4caf50" stop-opacity="0.03"/>
+  </radialGradient>
+  <radialGradient id="luz" cx="50%" cy="25%" r="65%">
+   <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+   <stop offset="100%" stop-color="#000000" stop-opacity="0.04"/>
+  </radialGradient>
+  <!-- Estilos -->
+  <style>
+   .etiqueta { font-family: 'Segoe UI', Arial, sans-serif; fill: #2d2d2d; }
+   .etiqueta-titulo { font-family: 'Segoe UI', Arial, sans-serif; font-weight: bold; fill: #1a2a1a; }
+  </style>
+  <!-- Marcador para puntos de interés -->
+  <g id="marcador">
+   <circle cx="0" cy="0" r="6" fill="#ffffff" stroke="#2d2d2d" stroke-width="1.8" filter="url(#sombraSuave)"/>
+   <circle cx="0" cy="0" r="2.5" fill="#2d2d2d"/>
+  </g>
+  <g id="marcador-rojo">
+   <circle cx="0" cy="0" r="6" fill="#ffffff" stroke="#c62828" stroke-width="1.8" filter="url(#sombraSuave)"/>
+   <circle cx="0" cy="0" r="2.5" fill="#c62828"/>
+  </g>
+ </defs>
+
+ <g class="layer">
+  <title>Mapa Finca La Esperanza</title>
+
+  <!-- Fondo con degradado natural -->
+  <rect fill="url(#fondo)" height="3222.21" width="2375" x="0" y="0"/>
+
+  <!-- Capa de relieve con óvalos y círculos -->
+  <g>
+   <ellipse cx="650" cy="900" rx="450" ry="380" fill="url(#montana1)"/>
+   <ellipse cx="650" cy="900" rx="320" ry="270" fill="url(#montana1)" opacity="0.6"/>
+   <ellipse cx="650" cy="900" rx="200" ry="170" fill="url(#montana1)" opacity="0.4"/>
+   <ellipse cx="1250" cy="650" rx="380" ry="300" fill="url(#montana2)"/>
+   <ellipse cx="1250" cy="650" rx="260" ry="200" fill="url(#montana2)" opacity="0.6"/>
+   <ellipse cx="1250" cy="650" rx="150" ry="120" fill="url(#montana2)" opacity="0.4"/>
+   <ellipse cx="1700" cy="420" rx="300" ry="240" fill="url(#montana3)"/>
+   <ellipse cx="1700" cy="420" rx="200" ry="160" fill="url(#montana3)" opacity="0.6"/>
+   <ellipse cx="1700" cy="420" rx="120" ry="100" fill="url(#montana3)" opacity="0.4"/>
+   <ellipse cx="550" cy="1700" rx="400" ry="320" fill="url(#montana1)"/>
+   <ellipse cx="550" cy="1700" rx="280" ry="220" fill="url(#montana1)" opacity="0.6"/>
+   <ellipse cx="550" cy="1700" rx="170" ry="130" fill="url(#montana1)" opacity="0.4"/>
+   <ellipse cx="1000" cy="1450" rx="350" ry="280" fill="url(#montana2)"/>
+   <ellipse cx="1000" cy="1450" rx="230" ry="180" fill="url(#montana2)" opacity="0.6"/>
+   <ellipse cx="850" cy="2300" rx="400" ry="320" fill="url(#montana3)"/>
+   <ellipse cx="850" cy="2300" rx="280" ry="220" fill="url(#montana3)" opacity="0.6"/>
+   <ellipse cx="850" cy="2300" rx="180" ry="140" fill="url(#montana3)" opacity="0.4"/>
+   <ellipse cx="1400" cy="2500" rx="320" ry="250" fill="url(#montana1)"/>
+   <ellipse cx="1400" cy="2500" rx="220" ry="170" fill="url(#montana1)" opacity="0.6"/>
+   <ellipse cx="450" cy="2850" rx="250" ry="200" fill="url(#montana2)"/>
+   <ellipse cx="450" cy="2850" rx="160" ry="130" fill="url(#montana2)" opacity="0.6"/>
+   <ellipse cx="450" cy="2850" rx="90" ry="70" fill="url(#montana2)" opacity="0.4"/>
+   <ellipse cx="700" cy="1100" rx="150" ry="120" fill="url(#montana3)" opacity="0.3"/>
+   <ellipse cx="1150" cy="800" rx="120" ry="100" fill="url(#montana1)" opacity="0.3"/>
+   <ellipse cx="950" cy="1600" rx="180" ry="140" fill="url(#montana2)" opacity="0.25"/>
+   <ellipse cx="1300" cy="2200" rx="200" ry="160" fill="url(#montana3)" opacity="0.25"/>
+   <ellipse cx="600" cy="2050" rx="180" ry="150" fill="url(#montana1)" opacity="0.2"/>
+  </g>
+
+  <!-- Capa de luz natural -->
+  <rect fill="url(#luz)" height="3222.21" width="2375" x="0" y="0"/>
+
+  <!-- Perímetro con sombra -->
+  <path d="m623.19,1626.17l-49.23,-3.84l-57.29,2.4l-71.48,5.78l-79.54,36.09l-67.7,35.13l-80,46.19l-80.96,42.35l-48.76,13.96l-21.3,-2.89l-36.93,61.6l15.15,54.38l49.71,176.12l60.12,163.14l79.06,235.32l91.37,132.34l78.59,89.5l92.79,104.91l112.2,141l30.87,-70.64l8.04,-22.38l25.66,-43.55l22.44,-42.3l32.58,-52.12l11.36,-24.25l15.81,-20.98l1.89,-35.61l-7.57,-68.82l-19.89,-49.57l-14.2,-48.12l-7.1,-74.11l0.47,-72.18l5.21,-25.51l3.79,-50.04l32.66,-16.36l39.77,-3.37l47.34,-20.21l16.57,-4.34l28.88,-8.18l26.51,-23.1l15.15,-23.09l9.47,-20.22l9.47,-22.13l15.62,-27.43l5.21,-19.25l54.92,-86.14l266.53,-410l155.75,-268.53l167.12,-257.93l143.92,-364.29l53.02,-177.09l-71.48,-62.56l-23.67,-7.22l-22.73,-33.2l-0.95,-20.7l39.77,-48.6l22.25,-44.32l-23.1,-10.49l-27.98,-5.05l-30.53,-5.68l-13.83,-2.51l-30.3,5.1l-48.48,12.42l-34.08,22.14l-35.03,16.36l-27.94,3.85l-20.83,5.29l-28.87,4.81l-12.31,-6.25l-25.09,-19.25l-19.42,-7.7l-43.55,1.44l-26.51,17.33l-27.93,3.85l-9,11.07l-13.73,27.43l1.9,34.64l1.89,24.55l-7.1,20.21l-25.56,5.77l-24.15,-1.44l-40.24,-21.66l-46.87,-14.91l-30.77,-2.41l-64.86,247.83l-26.51,8.66l-48.76,10.59l-29.83,7.7l-14.2,23.58l-0.95,32.72l-1.89,41.87l-6.15,55.34l-18.47,42.35l-11.83,31.76l-19.41,46.68l-34.56,54.38l-23.2,55.34l-18.94,28.39l-43.55,32.24l-29.35,29.84l-34.09,17.32l-15.62,31.28l10.89,48.12l14.67,67.85l-1.42,45.24l-3.31,44.27l10.41,41.39l30.3,50.05l0,30.31l-14.2,18.77l-13.73,29.36l-8.99,21.65l-19.89,18.77l-19.41,2.4z" fill="rgba(255,255,255,0.08)" fill-rule="evenodd" id="svg_3" stroke="#2d4a2d" stroke-linejoin="round" stroke-width="3.5" filter="url(#sombra)"/>
+
+  <!-- Polígonos -->
+  <g data-name="Parqueo" id="svg_8">
+   <path d="m1210.23,478.74l26.65,7.65l12.08,10.16l24.09,-0.63l7.62,-17.8l0,-13.81l-32.38,-9.68l-9.51,8.23l-17.76,-3.8l-9.51,8.28l-1.28,11.4z" fill="#F57C00" fill-opacity="0.4" fill-rule="evenodd" id="svg_9" stroke="#E65100" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Parqueo" id="svg_10">
+   <path d="m843.05,1863.61l-11.41,19.06l-17.8,23.48l37.49,15.26l26.66,6.35l21.58,1.25l12.69,7.65l20.31,-6.35l-19.69,-29.21l-15.2,-17.81l-48.29,-22.86l-6.34,3.18z" fill="#F57C00" fill-opacity="0.4" fill-rule="evenodd" id="svg_11" stroke="#E65100" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Plaza deporte" id="svg_36">
+   <path d="m846.03,1979.54l-3.17,39.36l106.66,18.43l1.94,-41.29l-105.43,-16.5z" fill="#1565C0" fill-opacity="0.35" fill-rule="evenodd" id="svg_37" stroke="#0D47A1" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Bosque comestible" id="svg_52">
+   <path d="m1157.3,1645.71l31.77,-6.98l6.34,-22.23l-0.66,-25.41l9.52,-25.41l5.72,-12.7l-10.79,-13.33l-62.87,-2.5l-17.14,-1.93l-17.14,24.11l14.63,16.51l10.75,3.17l18.46,27.34l11.41,39.36z" fill="#2E7D32" fill-opacity="0.35" fill-rule="evenodd" id="svg_53" stroke="#1B5E20" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Jardín Polinizadores" id="svg_64">
+   <path d="m1504.17,382.21l25.38,21.6l19.69,-5.1l10.14,16.51l8.28,14.63l20.93,9.53l17.13,-14.63l19.7,-12.03l16.52,6.98l20.93,-21.61l8.9,-21.56l-6.35,-26.03l-14.58,-14.63l-1.94,-16.51l7.62,-33.64l-2.51,-18.24l-30.3,5.1l-48.48,12.42l-22.48,15.3l-25.71,13.96l-20.92,9.24l-1.95,58.71z" fill="#6A1B9A" fill-opacity="0.3" fill-rule="evenodd" id="svg_65" stroke="#4A148C" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Banco Forrajero" id="svg_76">
+   <path d="m1362.34,674.36l12.69,19.06l10.79,17.75l14.63,1.93l31.1,0.62l19.7,3.18l6.96,-8.23l6.34,-55.87l5.11,-37.49l-0.66,-14.58l5.11,-18.43l-2.55,-25.41l-5.73,5.1l-34.89,46.35l-22.25,14.63l-46.35,51.39z" fill="#8D6E63" fill-opacity="0.45" fill-rule="evenodd" id="svg_77" stroke="#5D4037" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Banco Forrajero" id="svg_78">
+   <path d="m1471.37,709.59l17.75,-1.88l24.76,-6.98l13.97,-15.25l14.62,-14.63l12.69,-13.96l22.21,-27.91l8.28,-12.08l15.86,-22.23l8.9,-17.76l5.07,-19.68l3.17,-8.28l3.31,-5.96l9.38,-25.75l7.62,-14.63l-7.62,-16.5l-21.59,-11.41l-26.66,0.62l-31.76,9.53l-15.25,12.71l-5.06,19.01l-19.03,8.27l-21.5,19.93l-3.93,16.89l1.28,22.23l-3.78,27.91l-2.56,25.41l-2.56,20.98l-3.17,12.66l-4.4,38.74z" fill="#8D6E63" fill-opacity="0.45" fill-rule="evenodd" id="svg_79" stroke="#5D4037" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Banco Forrajero" id="svg_80">
+   <path d="m1674.51,450.54l-1.89,11.46l-5.73,18.38l-15.86,24.78l-9.52,22.86l-10.79,22.86l-1.89,17.13l-10.8,22.86l-15.9,29.83l-17.14,21.61l-13.97,13.96l10.18,13.95l11.41,17.13l15.24,30.51l10.18,20.94l16.48,-5.06l12.68,-20.35l12.74,-12.66l12.02,-12.08l18.42,-10.78l17.8,-20.35l22.2,-27.91l16.53,-20.94l13.35,-27.33l6.96,-24.11l4.45,-21.61l-3.18,-19.68l-15.24,-18.38l-15.86,-22.24l-16.52,-19.68l-15.86,-0.62l-30.49,-4.48z" fill="#8D6E63" fill-opacity="0.45" fill-rule="evenodd" id="svg_81" stroke="#5D4037" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Banco Forrajero" id="svg_82">
+   <path d="m1185.94,487.64l1.28,22.24l9.85,10.78l-0.81,20.64l36.03,28.25l31.1,12.7l30.49,6.98l30.44,0.67l8.9,-16.55l7.63,-17.13l6.34,-15.83l10.18,-20.36l0,-32.39l-0.67,-22.18l-14.58,-10.15l-17.75,1.25l-12.07,0.62l-8.9,29.84l-9.52,15.88l-12.69,11.4l-25.42,0l-15.24,-6.3l-14.58,-8.28l-40.01,-12.08z" fill="#8D6E63" fill-opacity="0.45" fill-rule="evenodd" id="svg_83" stroke="#5D4037" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Banco Forrajero" id="svg_84">
+   <path d="m785.2,1110.16l-11.41,10.15l-9.52,14.58l-17.8,12.71l-21.59,15.88l-33,16.5l-16.52,17.13l-9.51,19.06l5.06,18.43l5.73,15.88l20.31,15.21l27.93,17.8l24.76,15.89l17.8,-5.11l13.35,-19.05l15.86,-14.58l13.97,-15.88l-1.28,-23.49l12.07,-13.33l0,-36.86l-14.63,-21.56l-21.58,-39.36z" fill="#8D6E63" fill-opacity="0.45" fill-rule="evenodd" id="svg_85" stroke="#5D4037" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Pastoreo" id="svg_86">
+   <path d="m787.8,1102.51l18.98,47.01l30.54,30.41l-15.91,28.01l-4.4,16.46l-20.36,36.24l2.56,25.98l34.27,43.17l41.95,30.46l54.58,7.6l24.15,-15.2l26.65,-52.07l16.52,-15.26l24.1,16.51l20.31,10.15l29.21,14.01l36.83,19l38.11,-7.6l44.41,-20.31l45.73,-20.3l67.32,-41.92l53.31,-43.16l64.76,-39.37l5.07,-50.82l35.55,-40.61l50.8,-30.46l38.11,-53.37l15.24,-54.57l8.9,-53.32l-6.39,-20.36l-49.52,-15.2l-77.45,-6.36l-34.27,-17.8l-38.11,-27.91l-62.21,-10.16l-63.49,17.76l-90.13,43.17l-80.01,19.05l-58.42,-21.55l-73.67,7.6l8.9,-45.72l-30.48,-25.41l-15.2,52.07l-11.46,49.52l-10.13,38.11l-24.14,45.72l-25.43,38.06l-20.31,40.67l-15.24,31.71l-10.13,20.36z" fill="#43A047" fill-opacity="0.4" fill-rule="evenodd" id="svg_87" stroke="#2E7D32" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Pastoreo" id="svg_88">
+   <path d="m718.35,2259.47l-2.42,-34.51l7.63,-38.06l22.86,-30.51l53.31,-60.92l10.18,-45.72l32.95,-30.85l-38.02,-45.33l-30.49,-33.06l-35.55,-43.16l-35.55,-5.06l-43.18,-63.52l0,-88.88l-7.62,-73.63l-45.73,-27.96l-32.76,-15.97l-73.9,8.37l-68.56,17.75l-65.85,18.15l-106.85,80.94l27.93,35.56l-83.79,58.37l17.8,30.51l48.24,99.04l55.86,114.29l53.31,55.87l38.11,68.58l7.62,40.61l-55.86,-5.1l-104.15,5.1l-7.58,40.62l5.07,68.57l20.31,60.97l22.87,81.28l35.55,50.77l48.24,-12.7l40.62,40.66l30.49,48.22l50.8,66.02l17.75,7.65l132.08,-2.55l50.8,-33.01l22.87,-30.46l-15.25,-83.83l-22.86,-50.77l-2.56,-83.83l-5.07,-76.18l30.35,-82.33z" fill="#43A047" fill-opacity="0.4" fill-rule="evenodd" id="svg_89" stroke="#2E7D32" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Parqueo" id="svg_92">
+   <path d="m1454.8,411.42l19.69,9.53l4.4,29.83l20.36,6.35l0,-45.09l-14.63,-5.05l-20.92,-10.15l-8.9,14.58z" fill="#F57C00" fill-opacity="0.4" fill-rule="evenodd" id="svg_93" stroke="#E65100" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Parqueo" id="svg_94">
+   <path d="m1543.33,682.54l17.13,6.98l7.01,-20.93l-11.46,-1.93l-12.68,15.88z" fill="#F57C00" fill-opacity="0.4" fill-rule="evenodd" id="svg_95" stroke="#E65100" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Pastoreo" id="svg_96">
+   <path d="m1185.94,487.64l-9.32,-7.94l-17.76,-6.35l-13.96,-6.35l-4.45,-12.08l-6.34,-15.83l-13.97,-7.03l-20.36,-1.87l-11.41,8.23l-7,19.68l-8.86,22.23l-5.11,20.31l-3.17,17.8l-6.35,15.88l-5.06,17.14l-5.07,17.75l-5.72,20.31l-1.9,19.68l-5.73,16.51l-4.45,17.8l7.01,9.53l15.24,1.25l21.54,-1.92l24.81,-1.88l17.75,-2.55l17.81,-1.25l20.3,-3.8l20.31,-3.18l12.69,-1.92l14.63,0.62l15.86,4.48l20.31,1.25l17.75,-1.25l18.42,0l12.07,-7.65l15.24,-15.21l15.86,-10.15l11.46,-13.38l-4.69,-6.6l-38.48,0.29l-19.7,-3.85l-31.1,-10.77l-40.01,-29.22l-1.89,-24.1l-5.92,-12.37l-1.28,-22.24z" fill="#43A047" fill-opacity="0.4" fill-rule="evenodd" id="svg_97" stroke="#2E7D32" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Parqueo" id="svg_98">
+   <path d="m1436,724.5l-22.82,-0.72l3.18,14.58l19.69,-1.25l-0.05,-12.61z" fill="#F57C00" fill-opacity="0.4" fill-rule="evenodd" id="svg_99" stroke="#E65100" stroke-linejoin="round" stroke-width="1.8" filter="url(#sombraSuave)"/>
+  </g>
+
+  <!-- Líneas del camino -->
+  <g data-name="Camino principal" id="svg_4">
+   <path d="m759.02,2674.47l-5.07,-90.18l-41.75,-101.05l1.13,-75.41l7.62,-109.24l25.38,-35.51l68.6,-26.71l64.76,-16.51l36.78,-35.51l31.77,-55.87l24.14,-72.43l2.51,-110.44l-115.56,-115.54l-86.3,-105.44l-72.39,-34.26l30.44,-102.84l24.15,-45.71l-57.14,-99.04l-34.28,-173.96l-15.24,-59.72l11.41,-27.91l74.94,-38.12l54.58,-68.57l16.53,-45.72l62.2,-104.09l24.15,-63.52l15.24,-95.23l-2.55,-55.87l17.8,-19.01l113,-16.56l158.69,-27.91l55.91,7.61l50.8,3.8l35.55,-41.87l38.06,-73.67l40.67,-102.84l35.56,-40.62l15.05,-67.18" fill="none" id="svg_5" stroke="#4a2a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="7" filter="url(#sombraSuave)"/>
+   <path d="m759.02,2674.47l-5.07,-90.18l-41.75,-101.05l1.13,-75.41l7.62,-109.24l25.38,-35.51l68.6,-26.71l64.76,-16.51l36.78,-35.51l31.77,-55.87l24.14,-72.43l2.51,-110.44l-115.56,-115.54l-86.3,-105.44l-72.39,-34.26l30.44,-102.84l24.15,-45.71l-57.14,-99.04l-34.28,-173.96l-15.24,-59.72l11.41,-27.91l74.94,-38.12l54.58,-68.57l16.53,-45.72l62.2,-104.09l24.15,-63.52l15.24,-95.23l-2.55,-55.87l17.8,-19.01l113,-16.56l158.69,-27.91l55.91,7.61l50.8,3.8l35.55,-41.87l38.06,-73.67l40.67,-102.84l35.56,-40.62l15.05,-67.18" fill="none" stroke="#6d4c2a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" opacity="0.35"/>
+  </g>
+  <g data-name="Camino" id="svg_6">
+   <path d="m1466.16,331.82l-41.47,7.56l-39.86,4.91l-26.04,13.33l-16.52,33.01l-25.38,47.64l-20.31,18.43l-15.91,7.61" fill="none" id="svg_7" stroke="#4a2a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5" filter="url(#sombraSuave)"/>
+   <path d="m1466.16,331.82l-41.47,7.56l-39.86,4.91l-26.04,13.33l-16.52,33.01l-25.38,47.64l-20.31,18.43l-15.91,7.61" fill="none" stroke="#6d4c2a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" opacity="0.35"/>
+  </g>
+  <g data-name="Camino" id="svg_12">
+   <path d="m1487.32,455.88l8.24,56.5l-8.24,27.96l-8.9,15.88l4.45,35.51l-6.34,37.49l-3.17,34.94l-8.24,56.78l-26.04,8.57" fill="none" id="svg_13" stroke="#4a2a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5" filter="url(#sombraSuave)"/>
+   <path d="m1487.32,455.88l8.24,56.5l-8.24,27.96l-8.9,15.88l4.45,35.51l-6.34,37.49l-3.17,34.94l-8.24,56.78l-26.04,8.57" fill="none" stroke="#6d4c2a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" opacity="0.35"/>
+  </g>
+  <g data-name="Camino" id="svg_14">
+   <path d="m1745.66,293.13l-22.25,44.32l-39.76,48.61l-8.95,30.56l-1.28,21.6l-11.46,39.37l-24.09,39.36l-11.46,31.76l-12.69,38.07l-17.75,30.46l-31.77,40.66l-10.13,29.21" fill="none" id="svg_15" stroke="#4a2a1a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6.5" filter="url(#sombraSuave)"/>
+   <path d="m1745.66,293.13l-22.25,44.32l-39.76,48.61l-8.95,30.56l-1.28,21.6l-11.46,39.37l-24.09,39.36l-11.46,31.76l-12.69,38.07l-17.75,30.46l-31.77,40.66l-10.13,29.21" fill="none" stroke="#6d4c2a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" opacity="0.35"/>
+  </g>
+
+  <!-- Sendero - SOLO LÍNEA, sin relleno -->
+  <g data-name="Sendero" id="svg_66">
+   <path d="m768.39,1526.46l5.11,20.31l0,22.86l15.25,6.35l0,16.51l-13.97,16.5l-6.39,21.61l-6.34,11.41l-19.04,7.65l5.07,26.66l7.62,12.7l27.93,-10.15l17.8,-5.1l10.14,7.6l-7.58,17.81l5.07,13.95l11.41,10.16l6.34,15.25l12.73,6.35l22.82,3.8l19.08,-3.8l8.85,-25.41l11.46,-20.3l3.79,-20.31l-5.07,-15.26l15.25,-15.25l11.41,-7.6l-1.28,-12.71l-16.48,-19.06l-2.55,-15.2l2.55,-14.01l-16.52,-7.6l-15.24,-3.8l-7.62,-10.15l21.58,-22.86l7.63,-15.26l13.96,-15.2l17.8,-14.01l20.31,0l15.24,-10.15l-10.17,-17.76l-10.13,-17.8l-15.25,-12.71l-30.49,12.71l-12.69,25.41l-12.68,15.25l-19.08,6.35l-24.1,3.8l-24.14,1.25l-3.79,17.81l-15.24,11.4l-20.36,0z" fill="none" fill-rule="evenodd" id="svg_67" stroke="#BF360C" stroke-linejoin="round" stroke-width="3.5" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Sendero" id="svg_68">
+   <path d="m862.36,1748.69l18.65,9.58l-0.61,15.26l4.45,19l11.41,11.46l22.25,12.08l16.48,-7.66l16.52,6.98l20.92,12.71l11.46,12.07l10.13,15.26l8.28,8.23l15.25,-9.53l12.02,-0.62l11.46,-21.61l3.17,-21.56l-6.34,-17.13l10.13,-10.83l10.18,-22.86l-15.25,-8.23l-17.75,-6.35l-17.8,-0.62l-17.14,1.25l-10.18,-5.73l-15.85,-13.33l10.17,-14.58l18.42,-7.6l21.59,-2.55l15.86,-2.56l15.24,-6.97l18.42,-5.1l16.47,-9.53l14.63,-10.16l10.79,-12.65l10.13,-12.71l15.91,-3.85l11.41,10.2l5.07,21.56l9.51,12.08l18.42,-9.52l20.36,-14.64l8.85,-27.28l10.18,-15.21l14.58,-8.9l6.34,-25.41l14.02,-17.75l-3.22,-17.19l7.62,-20.3l2.55,-19.06l-10.79,-12.66l-24.14,0l-19.03,5.06l-14.59,-13.96l-15.24,-5.1l-22.87,5.1l-20.97,-0.62l-27.27,3.8l-20.31,12.03l-15.24,20.98l-10.18,5.73l-15.24,-3.85l-15.86,0.67l-19.7,-4.47l-17.13,-10.78l-10.8,-11.41l-11.65,-16.6" fill="none" id="svg_69" stroke="#BF360C" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Sendero" id="svg_70">
+   <path d="m1115.92,1642.1l-20.92,-12.08l-20.31,-13.95l-12.73,-11.45l10.79,-14.58l9.56,-10.83l-7,-20.94l-10.18,-7.6l5.73,-17.13l-3.79,-12.08" fill="none" id="svg_71" stroke="#BF360C" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" filter="url(#sombraSuave)"/>
+  </g>
+  <g data-name="Sendero" id="svg_72">
+   <path d="m1508.72,384.66l7.62,-2.55l3.84,8.23l8.23,7.65l8.9,-3.8l10.13,-5.1l5.73,8.28l10.8,1.87l6.34,3.18l9.52,4.43l8.9,-7.61l12.07,0l12.69,-3.17l7.62,-5.06l13.97,3.81l7.62,-5.73l11.45,0l10.14,-5.1l1.89,-8.23l-0.62,-10.78l12.07,-5.73l-2.55,-11.45l4.45,-8.85l8.24,3.17l5.72,-7.65l3.18,-7.6l1.27,-15.26l-1.27,-15.2l-7.62,-8.28l-14.59,-8.23l-14.62,10.15l-7.63,0l-12.07,-0.62l-13.3,-2.55l-13.35,5.72l-12.08,3.18l-10.13,4.43l-12.68,12.7l-5.12,15.21l-6.96,10.2l-8.9,0l-9.51,-3.85l-13.97,-6.35l-9.51,7.65l-11.46,8.86l-1.28,7.02l-2.51,16.51l-5.21,14.05l4.55,2.45z" fill="none" fill-rule="evenodd" id="svg_73" stroke="#BF360C" stroke-linejoin="round" stroke-width="3.5" filter="url(#sombraSuave)"/>
+  </g>
+
+  <!-- Caminos externos -->
+  <g data-name="Camino a Monteverde" id="svg_100">
+   <path d="m759.02,2674.47l-16.67,42.93l-11.64,30.17l-20.31,31.76l-24.1,45.77l-33,58.37l-20.35,44.47l-19.04,62.22l-47.01,77.43l-65.99,54.62" fill="none" id="svg_101" stroke="#3E2723" stroke-linecap="round" stroke-linejoin="round" stroke-width="13" filter="url(#sombra)"/>
+   <path d="m759.02,2674.47l-16.67,42.93l-11.64,30.17l-20.31,31.76l-24.1,45.77l-33,58.37l-20.35,44.47l-19.04,62.22l-47.01,77.43l-65.99,54.62" fill="none" stroke="#5D4037" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" opacity="0.25"/>
+  </g>
+  <g data-name="Camino a Monteverde" id="svg_102">
+   <path d="m1466.87,326.63l65.38,-22.86l60.93,-33.01l58.42,-29.21l55.86,-1.3l63.53,27.96l44.41,33.01l74.94,40.61l85.07,14.01l54.59,-19.06" fill="none" id="svg_103" stroke="#3E2723" stroke-linecap="round" stroke-linejoin="round" stroke-width="13" filter="url(#sombra)"/>
+   <path d="m1466.87,326.63l65.38,-22.86l60.93,-33.01l58.42,-29.21l55.86,-1.3l63.53,27.96l44.41,33.01l74.94,40.61l85.07,14.01l54.59,-19.06" fill="none" stroke="#5D4037" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" opacity="0.25"/>
+  </g>
+  <g data-name="Camino a Tilarán" id="svg_104">
+   <path d="m1466.87,326.63l-29.83,-82l-32.99,-74.93l-35.56,-55.87l-62.25,-19.06l-90.14,-11.4l-81.28,-1.3l-109.18,-41.92l-36.83,-10.15" fill="none" id="svg_105" stroke="#3E2723" stroke-linecap="round" stroke-linejoin="round" stroke-width="13" filter="url(#sombra)"/>
+   <path d="m1466.87,326.63l-29.83,-82l-32.99,-74.93l-35.56,-55.87l-62.25,-19.06l-90.14,-11.4l-81.28,-1.3l-109.18,-41.92l-36.83,-10.15" fill="none" stroke="#5D4037" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" opacity="0.25"/>
+  </g>
+
+  <!-- Puntos de interés con posiciones ajustadas para evitar superposición -->
+  <!-- Cabañas -->
+  <use href="#marcador-rojo" x="1534.43" y="741.88"/>
+  <use href="#marcador-rojo" x="1410.91" y="767.91"/>
+  <use href="#marcador-rojo" x="1472.5" y="760.93"/>
+  <use href="#marcador-rojo" x="1162.98" y="457.52"/>
+
+  <!-- Parqueos -->
+  <use href="#marcador" x="1255.63" y="476.58"/>
+  <use href="#marcador" x="1486.56" y="421.57"/>
+  <use href="#marcador" x="1556.01" y="678.07"/>
+  <use href="#marcador" x="874.1" y="1902.69"/>
+
+  <!-- Restaurante -->
+  <use href="#marcador-rojo" x="791.35" y="1862.6"/>
+
+  <!-- Mirador -->
+  <use href="#marcador" x="835.9" y="1911.64"/>
+
+  <!-- Plaza Deporte -->
+  <use href="#marcador" x="894.32" y="2008.12"/>
+
+  <!-- Lecheria -->
+  <use href="#marcador" x="1387.48" y="431.73"/>
+
+  <!-- Granja -->
+  <use href="#marcador" x="1409.35" y="506.75"/>
+
+  <!-- Piscicultura -->
+  <use href="#marcador" x="809.43" y="1937.86"/>
+  <use href="#marcador" x="826" y="1824.34"/>
+
+  <!-- Invernadero -->
+  <use href="#marcador" x="755.18" y="1769.48"/>
+
+  <!-- Melipolicultura -->
+  <use href="#marcador" x="802.76" y="1806.3"/>
+
+  <!-- Bosque comestible -->
+  <use href="#marcador" x="1161.75" y="1578.39"/>
+
+  <!-- Manto Acuífero -->
+  <use href="#marcador" x="1097.08" y="1366.17"/>
+
+  <!-- Sendero -->
+  <use href="#marcador" x="760.2" y="1516.65"/>
+
+  <!-- Ficus -->
+  <use href="#marcador" x="1186.13" y="667.58"/>
+
+  <!-- Jardín Polinizadores -->
+  <use href="#marcador" x="1592.8" y="359.16"/>
+
+  <!-- Parqueo adicional -->
+  <use href="#marcador" x="1425.21" y="729.75"/>
+  <use href="#marcador" x="1504.17" y="382.21"/>
+
+  <!-- Emojis y etiquetas con posiciones ajustadas para evitar superposiciones -->
+  <!-- 🦋 Jardín Polinizadores - movido más arriba y a la izquierda -->
+  <text fill="#2d2d2d" x="1605.6" y="363.19" font-size="42" font-family="sans-serif" text-anchor="middle" xml:space="preserve" filter="url(#sombraSuave)">🦋</text>
+
+  <!-- 🚶 Sendero - movido a la derecha -->
+  <text fill="#2d2d2d" x="1500.6" y="412.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 40 -35)" filter="url(#sombraSuave)">🚶</text>
+
+  <!-- 🅿️ Parqueos - posiciones ajustadas -->
+  <text fill="#2d2d2d" x="1481.6" y="420.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 5 12)" filter="url(#sombraSuave)">🅿️</text>
+  <text fill="#2d2d2d" x="1481.6" y="420.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -225.4 65.504)" filter="url(#sombraSuave)">🅿️</text>
+  <text fill="#2d2d2d" x="1481.6" y="420.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 73.5999 276.504)" filter="url(#sombraSuave)">🅿️</text>
+  <text fill="#2d2d2d" x="1481.6" y="420.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -64.4001 320.504)" filter="url(#sombraSuave)">🅿️</text>
+  <text fill="#2d2d2d" x="1481.6" y="420.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -601 1484.9)" filter="url(#sombraSuave)">🅿️</text>
+
+  <!-- 🏠 Cabañas - con números más separados -->
+  <text fill="#2d2d2d" x="1541.8" y="771.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 4 -15)" filter="url(#sombraSuave)">🏠</text>
+  <text fill="#2d2d2d" x="1541.8" y="771.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -65.4049 -0.296051)" filter="url(#sombraSuave)">🏠</text>
+  <text fill="#2d2d2d" x="1541.8" y="771.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -136.405 13.7039)" filter="url(#sombraSuave)">🏠</text>
+  <text fill="#2d2d2d" x="1541.8" y="771.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -381.405 -299.296)" filter="url(#sombraSuave)">🏠</text>
+
+  <!-- Números de cabañas - mejor separados -->
+  <text fill="#2d2d2d" x="1531.8" y="786.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 42 -14)" filter="url(#sombraSuave)">1️⃣</text>
+  <text fill="#2d2d2d" x="1496.8" y="815.59" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 15 -27)" filter="url(#sombraSuave)">3️⃣</text>
+  <text fill="#2d2d2d" x="1497.8" y="834.59" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -71 -29)" filter="url(#sombraSuave)">2️⃣</text>
+  <text fill="#2d2d2d" x="1139.8" y="489.99" font-size="32" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 41 3)" filter="url(#sombraSuave)">4️⃣</text>
+
+  <!-- 🌳 Ficus -->
+  <text fill="#2d2d2d" x="1174" y="686.39" font-size="42" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 19 2)" filter="url(#sombraSuave)">🌳</text>
+
+  <!-- 🐓 Granja -->
+  <text fill="#2d2d2d" x="1408.8" y="503.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 11 19)" filter="url(#sombraSuave)">🐓</text>
+
+  <!-- 🐮 Lechería -->
+  <text fill="#2d2d2d" x="1377.8" y="435.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 8 18)" filter="url(#sombraSuave)">🐮</text>
+
+  <!-- ⚽ Plaza Deporte -->
+  <text fill="#2d2d2d" x="891.6" y="2005.59" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 5 18)" filter="url(#sombraSuave)">⚽</text>
+
+  <!-- 🚶 Sendero (zona sur) -->
+  <text fill="#2d2d2d" x="1524.6" y="412.19" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -742.405 1100.9)" filter="url(#sombraSuave)">🚶</text>
+
+  <!-- 🍎 Bosque comestible -->
+  <text fill="#2d2d2d" x="1153.6" y="1578.59" font-size="40" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 5 2)" filter="url(#sombraSuave)">🍎</text>
+
+  <!-- 💧 Manto Acuífero -->
+  <text fill="#2d2d2d" x="1087" y="1360.99" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 11 33)" filter="url(#sombraSuave)">💧</text>
+
+  <!-- 🐟 Piscicultura -->
+  <text fill="#2d2d2d" x="842" y="1940.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -4.40494 -98.2961)" filter="url(#sombraSuave)">🐟</text>
+  <text fill="#2d2d2d" x="830" y="1943.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 -26 9)" filter="url(#sombraSuave)">🐟</text>
+
+  <!-- 🍽️ Restaurante -->
+  <text fill="#2d2d2d" x="740.6" y="1878.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 41 7)" filter="url(#sombraSuave)">🍽️</text>
+
+  <!-- 🐝 Melipolicultura -->
+  <text fill="#2d2d2d" x="790.2" y="1805.59" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 6 13)" filter="url(#sombraSuave)">🐝</text>
+
+  <!-- 🌱 Invernadero -->
+  <text fill="#2d2d2d" x="748" y="1762.99" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 4 7)" filter="url(#sombraSuave)">🌱</text>
+
+  <!-- 🔭 Mirador -->
+  <text fill="#2d2d2d" x="847.8" y="1933.39" font-size="48" font-family="sans-serif" text-anchor="middle" xml:space="preserve" transform="matrix(1 0 0 1 4 13)" filter="url(#sombraSuave)">🔭</text>
+
+  <!-- Títulos - reposicionados para no superponerse con líneas y puntos -->
+  <!-- Título superior izquierdo (Camino a Tilarán) - movido más arriba -->
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 -21 3)" x="1187" xml:space="preserve" y="130" filter="url(#sombraSuave)">Camino a Tilarán</text>
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 77 5)" x="1092.2" y="175" xml:space="preserve" filter="url(#sombraSuave)">Road to Tilarán</text>
+
+  <!-- Título superior derecho (Camino a Monteverde) - movido más arriba y a la derecha -->
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 84 -4)" x="1883" xml:space="preserve" y="210" filter="url(#sombraSuave)">Camino a Monteverde</text>
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 134 2)" x="1836.8" y="250" xml:space="preserve" filter="url(#sombraSuave)">Road to Monteverde</text>
+
+  <!-- Título inferior (Camino a Monteverde) - movido para no superponerse con puntos -->
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 32 -11)" x="780.2" xml:space="preserve" y="3050" font-size="36" filter="url(#sombraSuave)">Camino a Monteverde</text>
+  <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" transform="matrix(1 0 0 1 111 -14)" x="700.8" y="3095" xml:space="preserve" filter="url(#sombraSuave)">Road to Monteverde</text>
+
+  <!-- Escala -->
+    <g transform="translate(-38 -118) matrix(1 0 0 1 148 -12) translate(138.07 3190.71) scale(2) translate(-138.07 -3190.71)">
+    <rect fill="#1a2a1a" height="6" id="svg_107" stroke="#1a2a1a" stroke-width="0.75" width="54.04" x="30" y="3190.71"/>
+    <rect fill="#ffffff" height="6" id="svg_108" stroke="#1a2a1a" stroke-width="0.75" width="54.04" x="84.04" y="3190.71"/>
+    <rect fill="#1a2a1a" height="6" id="svg_109" stroke="#1a2a1a" stroke-width="0.75" width="54.04" x="138.07" y="3190.71"/>
+    <rect fill="#ffffff" height="6" id="svg_110" stroke="#1a2a1a" stroke-width="0.75" width="54.04" x="192.11" y="3190.71"/>
+    <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" id="svg_111" x="30" y="3186.71">0</text>
+    <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="end" id="svg_112" x="246.15" y="3186.71">50 m</text>
+  </g>
+
+  <!-- Rosa de los vientos -->
+    <g transform="translate(105 105)">
+   <g id="svg_114" stroke="#1a2a1a">
+        <circle cx="0" cy="0" fill="#ffffff" fill-opacity="0.95" id="svg_115" r="48" filter="url(#sombra)"/>
+        <polygon fill="#1a2a1a" id="svg_116" points="0,-35 -10,0 10,0"/>
+        <polygon fill="#ffffff" id="svg_118" points="0,35 -10,0 10,0"/>
+     <polygon fill="#1a2a1a" id="compass_east" points="35,0 0,-10 0,10"/>
+     <polygon fill="#ffffff" id="compass_west" points="-35,0 0,-10 0,10"/>
+        <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" id="svg_117" x="0" y="-57">N</text>
+     <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" id="compass_south" x="0" y="70">S</text>
+     <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" dominant-baseline="middle" id="compass_east_label" x="61" y="0">E</text>
+     <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" dominant-baseline="middle" id="compass_west_label" x="-61" y="0">O</text>
+   </g>
+  </g>
+
+    <!-- Nombre de la finca, debajo de la rosa de los vientos -->
+    <g fill="#1C1C1C">
+     <text x="600" y="500"
+       font-family="'Great Vibes', 'Brush Script MT', 'Pacifico', 'Dancing Script', 'Snell Roundhand', 'Segoe Script', cursive, 'Georgia', serif"
+       font-size="120"
+       font-style="italic"
+       font-weight="bold"
+       text-anchor="middle"
+       letter-spacing="2">Finca</text>
+     <text x="600" y="600"
+       font-family="'Great Vibes', 'Brush Script MT', 'Pacifico', 'Dancing Script', 'Snell Roundhand', 'Segoe Script', cursive, 'Georgia', serif"
+       font-size="120"
+       font-style="italic"
+       font-weight="bold"
+       text-anchor="middle"
+       letter-spacing="1">Bello Amanecer</text>
+    </g>
+
+  <!-- Leyenda -->
+  <g transform="matrix(1 0 0 1 0 0) translate(143 -273) matrix(1 0 0 1 -524 1272)">
+   <rect fill="#ffffff" fill-opacity="0.95" height="1350" id="svg_119" stroke="#2d4a2d" stroke-width="1.5" width="670" x="2075" y="30" rx="8" ry="8" filter="url(#sombra)"/>
+   <rect fill="#2d4a2d" height="60" width="670" x="2075" y="30" rx="8" ry="8"/>
+   <text fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="bold" id="svg_120" x="2100" y="72">Simbología / Symbolism</text>
+
+   <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="bold" id="svg_121" x="2085" y="120">Puntos / Points</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_cabana" x="2085" y="158">🏠 Cabaña / Cabin</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_parqueo" x="2085" y="198">🅿️ Parqueo / Parking</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_restaurante" x="2085" y="238">🍽️ Restaurante / Restaurant</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_mirador" x="2085" y="278">🔭 Mirador / Viewpoint</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_plaza" x="2085" y="318">⚽ Plaza Deporte / Sports Plaza</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_lecheria" x="2085" y="358">🐮 Lechería / Dairy</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_granja" x="2085" y="398">🐓 Granja / Farm</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_piscicultura" x="2085" y="438">🐟 Piscicultura / Fish Farming</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_invernadero" x="2085" y="478">🌱 Invernadero / Greenhouse</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_melipoli" x="2085" y="518">🐝 Melipolicultura / Meliponiculture</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_bosque" x="2085" y="558">🍎 Bosque comestible / Edible Forest</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_manto" x="2085" y="598">💧 Manto Acuífero / Aquifer</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_sendero" x="2085" y="638">🚶 Sendero / Trail</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_ficus" x="2085" y="678">🌳 Ficus / Ficus</text>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="txt_jardin" x="2085" y="718">🦋 Jardín Polinizadores / Pollinator Garden</text>
+
+   <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="bold" id="svg_170" x="2085" y="780">Líneas / Lines</text>
+   <line id="svg_171" stroke="#4a2a1a" stroke-linecap="round" stroke-width="7" x1="2085" x2="2115" y1="810" y2="810"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_172" x="2125" y="818">Camino principal / Main Road</text>
+   <line id="svg_173" stroke="#4a2a1a" stroke-linecap="round" stroke-width="6" x1="2085" x2="2115" y1="850" y2="850"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_174" x="2125" y="858">Camino / Road</text>
+   <line id="svg_179" stroke="#BF360C" stroke-linecap="round" stroke-width="3.5" x1="2085" x2="2115" y1="890" y2="890"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_180" x="2125" y="898">Sendero / Trail</text>
+   <line id="svg_183" stroke="#3E2723" stroke-linecap="round" stroke-width="13" x1="2085" x2="2115" y1="930" y2="930"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_184" x="2125" y="938">Camino a Monteverde / Road to Monteverde</text>
+   <line id="svg_187" stroke="#3E2723" stroke-linecap="round" stroke-width="13" x1="2085" x2="2115" y1="970" y2="970"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_188" x="2125" y="978">Camino a Tilarán / Road to Tilarán</text>
+
+   <text fill="#1a2a1a" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="bold" id="svg_189" x="2085" y="1040">Polígonos / Polygons</text>
+   <rect fill="rgba(255,255,255,0.1)" height="16" id="svg_190" stroke="#2d4a2d" stroke-width="2" width="30" x="2085" y="1070" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_191" x="2125" y="1088">Perímetro / Perimeter</text>
+   <rect fill="#F57C00" fill-opacity="0.4" height="16" id="svg_192" stroke="#E65100" stroke-width="1.5" width="30" x="2085" y="1110" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_193" x="2125" y="1128">Parqueo / Parking</text>
+   <rect fill="#1565C0" fill-opacity="0.35" height="16" id="svg_196" stroke="#0D47A1" stroke-width="1.5" width="30" x="2085" y="1150" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_197" x="2125" y="1168">Plaza deporte / Sports Plaza</text>
+   <rect fill="#2E7D32" fill-opacity="0.35" height="16" id="svg_198" stroke="#1B5E20" stroke-width="1.5" width="30" x="2085" y="1190" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_199" x="2125" y="1208">Bosque comestible / Edible Forest</text>
+   <rect fill="#6A1B9A" fill-opacity="0.3" height="16" id="svg_200" stroke="#4A148C" stroke-width="1.5" width="30" x="2085" y="1230" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_201" x="2125" y="1248">Jardín Polinizadores / Pollinator Garden</text>
+   <rect fill="#8D6E63" fill-opacity="0.45" height="16" id="svg_206" stroke="#5D4037" stroke-width="1.5" width="30" x="2085" y="1270" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_207" x="2125" y="1288">Banco Forrajero / Forage Bank</text>
+   <rect fill="#43A047" fill-opacity="0.4" height="16" id="svg_216" stroke="#2E7D32" stroke-width="1.5" width="30" x="2085" y="1310" rx="2"/>
+   <text fill="#2d2d2d" font-family="'Segoe UI', Arial, sans-serif" font-size="24" id="svg_217" x="2125" y="1328">Pastoreo / Grazing</text>
+  </g>
+
+ </g>
+</svg>

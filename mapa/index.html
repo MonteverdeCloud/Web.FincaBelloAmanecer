@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Finca Bello Amanecer - Mapa Interactivo</title>
+    <style>
+        :root {
+            --color-fondo: #1a1f2b;
+            --color-texto: #f0f0f0;
+            --color-acento: #d4af37;
+            --color-boton: rgba(255, 255, 255, 0.15);
+            --color-boton-hover: rgba(255, 255, 255, 0.3);
+            --sombra: 0 8px 20px rgba(0, 0, 0, 0.5);
+            --radio-borde: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+        }
+
+        #mapa-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            cursor: grab;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #mapa-wrapper:active {
+            cursor: grabbing;
+        }
+
+        #mapa-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            will-change: transform;
+            /* Asegura que la imagen no se distorsione */
+            display: block;
+        }
+
+        #mapa-inner img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Evita que la imagen capture eventos de arrastre */
+        }
+
+        .encabezado {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 25px;
+            background: linear-gradient(to bottom, rgba(26, 31, 43, 0.95), rgba(26, 31, 43, 0.6), transparent);
+            pointer-events: none;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .encabezado h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-acento);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 5px;
+        }
+
+        .encabezado p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .controles {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 20;
+        }
+
+        .boton-control {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--color-boton);
+            color: var(--color-texto);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--sombra);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s, transform 0.2s;
+            pointer-events: auto;
+        }
+
+        .boton-control:hover {
+            background: var(--color-boton-hover);
+            transform: scale(1.05);
+        }
+
+        .boton-control:active {
+            transform: scale(0.95);
+        }
+
+        .boton-google-maps {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            z-index: 20;
+            padding: 14px 22px;
+            border-radius: 50px;
+            border: none;
+            background: var(--color-acento);
+            color: #1a1f2b;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--sombra);
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto;
+            text-decoration: none;
+        }
+
+        .boton-google-maps:hover {
+            background: #e6c84d;
+            transform: translateY(-2px);
+        }
+
+        .boton-google-maps svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        #cargando {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: var(--color-texto);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 30px;
+            border-radius: var(--radio-borde);
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .encabezado h1 {
+                font-size: 1.8rem;
+            }
+            .encabezado p {
+                font-size: 0.9rem;
+            }
+            .boton-google-maps {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+                bottom: 15px;
+                left: 15px;
+            }
+            .controles {
+                bottom: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+            .boton-control {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="mapa-wrapper">
+        <!-- Contenedor de la imagen del mapa -->
+        <div id="mapa-inner">
+            <img src="mapa.svg" alt="Mapa de Finca Bello Amanecer" id="mapa-img">
+        </div>
+
+        <!-- Encabezado superpuesto -->
+        <div class="encabezado">
+            <h1>Finca Bello Amanecer</h1>
+            <p>Mapa interactivo de la propiedad</p>
+        </div>
+
+        <!-- Botón Google Maps -->
+        <a href="https://www.google.com/maps/d/u/0/edit?mid=1yRqwLMF2Ew_M_LodYoS1nFW_999tNtQ&ll=10.33546478979504%2C-84.82672668862507&z=18" target="_blank" rel="noopener noreferrer" class="boton-google-maps">
+            <svg viewBox="0 0 24 24"><path d="M12 0C7.31 0 3.5 3.81 3.5 8.5c0 6.37 8.5 15.5 8.5 15.5s8.5-9.13 8.5-15.5C20.5 3.81 16.69 0 12 0zm0 11.5c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+            Abrir en Google Maps
+        </a>
+
+        <!-- Controles de zoom -->
+        <div class="controles">
+            <button class="boton-control" id="btn-zoom-in" title="Acercar">+</button>
+            <button class="boton-control" id="btn-zoom-out" title="Alejar">−</button>
+            <button class="boton-control" id="btn-reset" title="Restablecer vista">⟲</button>
+        </div>
+
+        <!-- Indicador de carga -->
+        <div id="cargando">Cargando mapa…</div>
+    </div>
+
+    <script>
+        (function() {
+            const wrapper = document.getElementById('mapa-wrapper');
+            const inner = document.getElementById('mapa-inner');
+            const img = document.getElementById('mapa-img');
+            const cargando = document.getElementById('cargando');
+
+            let escala = 1;
+            let traslacionX = 0;
+            let traslacionY = 0;
+            let escalaInicial = 1;
+            let traslacionInicialX = 0;
+            let traslacionInicialY = 0;
+            let dimensionesSVG = { width: 0, height: 0 };
+            let svgCargado = false;
+
+            let arrastrando = false;
+            let inicioX = 0;
+            let inicioY = 0;
+            let traslacionInicioX = 0;
+            let traslacionInicioY = 0;
+
+            let toques = [];
+            let distanciaInicial = 0;
+            let escalaInicialToque = 1;
+            let puntoMedioInicial = { x: 0, y: 0 };
+            let traslacionInicialToque = { x: 0, y: 0 };
+
+            // Esperar a que la imagen cargue
+            img.addEventListener('load', function() {
+                // Obtener dimensiones naturales de la imagen
+                dimensionesSVG = {
+                    width: img.naturalWidth,
+                    height: img.naturalHeight
+                };
+
+                if (dimensionesSVG.width === 0 || dimensionesSVG.height === 0) {
+                    cargando.textContent = 'Error: el SVG no tiene dimensiones válidas.';
+                    cargando.style.color = '#ff6b6b';
+                    return;
+                }
+
+                // Establecer tamaño explícito para evitar deformaciones
+                img.style.width = dimensionesSVG.width + 'px';
+                img.style.height = dimensionesSVG.height + 'px';
+
+                // Ajustar vista inicial
+                ajustarVistaInicial();
+
+                // Ocultar indicador de carga
+                cargando.style.display = 'none';
+                svgCargado = true;
+            });
+
+            img.addEventListener('error', function() {
+                cargando.textContent = 'Error al cargar mapa.svg. Verifica que el archivo esté en la misma carpeta.';
+                cargando.style.color = '#ff6b6b';
+            });
+
+            function ajustarVistaInicial() {
+                const anchoContenedor = wrapper.clientWidth;
+                const altoContenedor = wrapper.clientHeight;
+                if (anchoContenedor === 0 || altoContenedor === 0) return;
+
+                const escalaX = anchoContenedor / dimensionesSVG.width;
+                const escalaY = altoContenedor / dimensionesSVG.height;
+                const escalaAjuste = Math.min(escalaX, escalaY) * 0.95;
+
+                escala = escalaAjuste;
+                escalaInicial = escalaAjuste;
+
+                traslacionX = (anchoContenedor - dimensionesSVG.width * escala) / 2;
+                traslacionY = (altoContenedor - dimensionesSVG.height * escala) / 2;
+                traslacionInicialX = traslacionX;
+                traslacionInicialY = traslacionY;
+
+                aplicarTransformacion();
+            }
+
+            function aplicarTransformacion() {
+                inner.style.transform = `translate(${traslacionX}px, ${traslacionY}px) scale(${escala})`;
+            }
+
+            function zoomHacia(puntoX, puntoY, factor) {
+                const nuevaEscala = Math.min(Math.max(escala * factor, 0.1), 20);
+                if (nuevaEscala === escala) return;
+
+                const rect = wrapper.getBoundingClientRect();
+                const offsetX = puntoX - rect.left;
+                const offsetY = puntoY - rect.top;
+
+                traslacionX = offsetX - (offsetX - traslacionX) * (nuevaEscala / escala);
+                traslacionY = offsetY - (offsetY - traslacionY) * (nuevaEscala / escala);
+                escala = nuevaEscala;
+                aplicarTransformacion();
+            }
+
+            // --- Eventos de ratón ---
+            wrapper.addEventListener('mousedown', (e) => {
+                if (!svgCargado) return;
+                arrastrando = true;
+                inicioX = e.clientX;
+                inicioY = e.clientY;
+                traslacionInicioX = traslacionX;
+                traslacionInicioY = traslacionY;
+                e.preventDefault();
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!arrastrando) return;
+                traslacionX = traslacionInicioX + (e.clientX - inicioX);
+                traslacionY = traslacionInicioY + (e.clientY - inicioY);
+                aplicarTransformacion();
+            });
+
+            window.addEventListener('mouseup', () => {
+                arrastrando = false;
+            });
+
+            wrapper.addEventListener('wheel', (e) => {
+                if (!svgCargado) return;
+                e.preventDefault();
+                const factor = e.deltaY < 0 ? 1.1 : 0.9;
+                zoomHacia(e.clientX, e.clientY, factor);
+            }, { passive: false });
+
+            wrapper.addEventListener('dblclick', (e) => {
+                if (!svgCargado) return;
+                zoomHacia(e.clientX, e.clientY, 1.5);
+            });
+
+            // --- Eventos táctiles ---
+            wrapper.addEventListener('touchstart', (e) => {
+                if (!svgCargado) return;
+                e.preventDefault();
+                toques = Array.from(e.touches);
+                if (toques.length === 1) {
+                    arrastrando = true;
+                    inicioX = toques[0].clientX;
+                    inicioY = toques[0].clientY;
+                    traslacionInicioX = traslacionX;
+                    traslacionInicioY = traslacionY;
+                } else if (toques.length === 2) {
+                    arrastrando = false;
+                    const dx = toques[0].clientX - toques[1].clientX;
+                    const dy = toques[0].clientY - toques[1].clientY;
+                    distanciaInicial = Math.sqrt(dx * dx + dy * dy);
+                    escalaInicialToque = escala;
+                    puntoMedioInicial = {
+                        x: (toques[0].clientX + toques[1].clientX) / 2,
+                        y: (toques[0].clientY + toques[1].clientY) / 2
+                    };
+                    traslacionInicialToque = { x: traslacionX, y: traslacionY };
+                }
+            }, { passive: false });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!svgCargado) return;
+                e.preventDefault();
+                toques = Array.from(e.touches);
+                if (toques.length === 1 && arrastrando) {
+                    traslacionX = traslacionInicioX + (toques[0].clientX - inicioX);
+                    traslacionY = traslacionInicioY + (toques[0].clientY - inicioY);
+                    aplicarTransformacion();
+                } else if (toques.length === 2) {
+                    const dx = toques[0].clientX - toques[1].clientX;
+                    const dy = toques[0].clientY - toques[1].clientY;
+                    const nuevaDistancia = Math.sqrt(dx * dx + dy * dy);
+                    if (distanciaInicial === 0) return;
+                    const factor = nuevaDistancia / distanciaInicial;
+                    const nuevaEscala = Math.min(Math.max(escalaInicialToque * factor, 0.1), 20);
+
+                    const puntoMedioActual = {
+                        x: (toques[0].clientX + toques[1].clientX) / 2,
+                        y: (toques[0].clientY + toques[1].clientY) / 2
+                    };
+
+                    const rect = wrapper.getBoundingClientRect();
+                    const offsetXInicial = puntoMedioInicial.x - rect.left;
+                    const offsetYInicial = puntoMedioInicial.y - rect.top;
+                    const offsetXActual = puntoMedioActual.x - rect.left;
+                    const offsetYActual = puntoMedioActual.y - rect.top;
+
+                    traslacionX = traslacionInicialToque.x + (offsetXActual - offsetXInicial) - (offsetXInicial - traslacionInicialToque.x) * (nuevaEscala / escalaInicialToque);
+                    traslacionY = traslacionInicialToque.y + (offsetYActual - offsetYInicial) - (offsetYInicial - traslacionInicialToque.y) * (nuevaEscala / escalaInicialToque);
+
+                    escala = nuevaEscala;
+                    aplicarTransformacion();
+                }
+            }, { passive: false });
+
+            wrapper.addEventListener('touchend', (e) => {
+                if (!svgCargado) return;
+                toques = Array.from(e.touches);
+                if (toques.length === 0) {
+                    arrastrando = false;
+                } else if (toques.length === 1) {
+                    arrastrando = true;
+                    inicioX = toques[0].clientX;
+                    inicioY = toques[0].clientY;
+                    traslacionInicioX = traslacionX;
+                    traslacionInicioY = traslacionY;
+                } else if (toques.length === 2) {
+                    const dx = toques[0].clientX - toques[1].clientX;
+                    const dy = toques[0].clientY - toques[1].clientY;
+                    distanciaInicial = Math.sqrt(dx * dx + dy * dy);
+                    escalaInicialToque = escala;
+                    puntoMedioInicial = {
+                        x: (toques[0].clientX + toques[1].clientX) / 2,
+                        y: (toques[0].clientY + toques[1].clientY) / 2
+                    };
+                    traslacionInicialToque = { x: traslacionX, y: traslacionY };
+                }
+            }, { passive: false });
+
+            // --- Botones de control ---
+            document.getElementById('btn-zoom-in').addEventListener('click', () => {
+                if (!svgCargado) return;
+                const rect = wrapper.getBoundingClientRect();
+                const centroX = rect.left + rect.width / 2;
+                const centroY = rect.top + rect.height / 2;
+                zoomHacia(centroX, centroY, 1.3);
+            });
+
+            document.getElementById('btn-zoom-out').addEventListener('click', () => {
+                if (!svgCargado) return;
+                const rect = wrapper.getBoundingClientRect();
+                const centroX = rect.left + rect.width / 2;
+                const centroY = rect.top + rect.height / 2;
+                zoomHacia(centroX, centroY, 0.7);
+            });
+
+            document.getElementById('btn-reset').addEventListener('click', () => {
+                if (!svgCargado) return;
+                escala = escalaInicial;
+                traslacionX = traslacionInicialX;
+                traslacionY = traslacionInicialY;
+                aplicarTransformacion();
+            });
+
+            window.addEventListener('resize', () => {
+                if (!svgCargado) return;
+                ajustarVistaInicial();
+            });
+        })();
+    </script>
+</body>
+</html>
