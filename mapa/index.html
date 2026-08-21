@@ -92,8 +92,8 @@
 
         .controles {
             position: absolute;
-            bottom: 25px;
-            right: 25px;
+            bottom: max(25px, env(safe-area-inset-bottom));
+            right: max(25px, env(safe-area-inset-right));
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -130,8 +130,8 @@
 
         .boton-google-maps {
             position: absolute;
-            bottom: 25px;
-            left: 25px;
+            bottom: max(25px, env(safe-area-inset-bottom));
+            left: max(25px, env(safe-area-inset-left));
             z-index: 20;
             padding: 14px 22px;
             border-radius: 50px;
@@ -148,6 +148,8 @@
             gap: 8px;
             pointer-events: auto;
             text-decoration: none;
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
         }
 
         .boton-google-maps:hover {
@@ -185,18 +187,27 @@
             .boton-google-maps {
                 padding: 10px 16px;
                 font-size: 0.9rem;
-                bottom: 15px;
-                left: 15px;
+                bottom: max(15px, env(safe-area-inset-bottom));
+                left: max(15px, env(safe-area-inset-left));
             }
             .controles {
-                bottom: 15px;
-                right: 15px;
+                bottom: max(15px, env(safe-area-inset-bottom));
+                right: max(15px, env(safe-area-inset-right));
                 gap: 8px;
             }
             .boton-control {
                 width: 45px;
                 height: 45px;
                 font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .boton-google-maps {
+                max-width: calc(100vw - 90px);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
         }
     </style>
@@ -365,6 +376,7 @@
             // --- Eventos táctiles ---
             wrapper.addEventListener('touchstart', (e) => {
                 if (!svgCargado) return;
+                if (e.target.closest('a, button')) return;
                 e.preventDefault();
                 toques = Array.from(e.touches);
                 if (toques.length === 1) {
@@ -389,6 +401,7 @@
 
             wrapper.addEventListener('touchmove', (e) => {
                 if (!svgCargado) return;
+                if (e.target.closest('a, button')) return;
                 e.preventDefault();
                 toques = Array.from(e.touches);
                 if (toques.length === 1 && arrastrando) {
@@ -414,8 +427,9 @@
                     const offsetXActual = puntoMedioActual.x - rect.left;
                     const offsetYActual = puntoMedioActual.y - rect.top;
 
-                    traslacionX = traslacionInicialToque.x + (offsetXActual - offsetXInicial) - (offsetXInicial - traslacionInicialToque.x) * (nuevaEscala / escalaInicialToque);
-                    traslacionY = traslacionInicialToque.y + (offsetYActual - offsetYInicial) - (offsetYInicial - traslacionInicialToque.y) * (nuevaEscala / escalaInicialToque);
+                    const factorEscala = nuevaEscala / escalaInicialToque;
+                    traslacionX = offsetXActual - (offsetXInicial - traslacionInicialToque.x) * factorEscala;
+                    traslacionY = offsetYActual - (offsetYInicial - traslacionInicialToque.y) * factorEscala;
 
                     escala = nuevaEscala;
                     aplicarTransformacion();
@@ -424,6 +438,7 @@
 
             wrapper.addEventListener('touchend', (e) => {
                 if (!svgCargado) return;
+                if (e.target.closest('a, button')) return;
                 toques = Array.from(e.touches);
                 if (toques.length === 0) {
                     arrastrando = false;
@@ -445,6 +460,11 @@
                     traslacionInicialToque = { x: traslacionX, y: traslacionY };
                 }
             }, { passive: false });
+
+            wrapper.addEventListener('touchcancel', () => {
+                arrastrando = false;
+                toques = [];
+            }, { passive: true });
 
             // --- Botones de control ---
             document.getElementById('btn-zoom-in').addEventListener('click', () => {
