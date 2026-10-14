@@ -231,20 +231,44 @@
             box-shadow: 0 2px 8px rgba(74, 90, 74, 0.2);
         }
 
-        .map-panel {
-            display: none;
+        /* ============================================
+           WRAPPER DE PANELES
+           El wrapper mantiene la altura SIEMPRE.
+           Los paneles se apilan con position absolute
+           y se alternan con visibility (no display),
+           así el SVG nunca pierde dimensiones.
+           ============================================ */
+        .map-panels-wrapper {
             position: relative;
             width: 100%;
             aspect-ratio: 1 / 1;
             border-radius: var(--radio);
             overflow: hidden;
+        }
+
+        .map-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radio);
+            overflow: hidden;
             background: var(--color-fondo);
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
         }
 
         .map-panel.active {
-            display: block;
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 1;
         }
 
+        /* Frame del SVG (interactivo) */
         .map-frame {
             position: relative;
             width: 100%;
@@ -265,6 +289,7 @@
             -webkit-user-select: none;
         }
 
+        /* Frame de Google Maps */
         .maps-embed {
             width: 100%;
             height: 100%;
@@ -517,7 +542,8 @@
             border-radius: 0;
             width: 100vw;
             height: 100vh;
-            aspect-ratio: auto;
+            visibility: visible;
+            opacity: 1;
         }
 
         .map-panel:fullscreen .map-frame {
@@ -534,6 +560,8 @@
             background: var(--color-fondo);
             width: 100vw;
             height: 100vh;
+            visibility: visible;
+            opacity: 1;
         }
 
         .map-panel:-webkit-full-screen .map-frame {
@@ -590,7 +618,8 @@
                 flex-shrink: 0;
             }
 
-            .map-panel {
+            /* Wrapper cambia de aspect ratio en móvil */
+            .map-panels-wrapper {
                 aspect-ratio: 3 / 4;
             }
 
@@ -704,50 +733,54 @@
             </div>
 
             <!-- ==========================================
-             PANEL SVG (MAPA INTERACTIVO)
+             WRAPPER DE PANELES
+             Mantiene la altura del contenedor; los
+             paneles se alternan con visibility.
              ========================================== -->
-            <div class="map-panel active" id="panel-svg">
-                <div class="map-frame" id="mapFrame">
-                    <noscript>
-                        <img src="../assets/img/mapa.svg" alt="Mapa de Finca Bello Amanecer"
-                            style="width:100%;height:100%;object-fit:contain;">
-                    </noscript>
-                </div>
+            <div class="map-panels-wrapper">
 
-                <div class="map-controls">
-                    <div class="zoom-group">
-                        <button class="map-control-btn" id="btnZoomIn" aria-label="Acercar" title="Acercar">
-                            <i class="fa-solid fa-plus"></i>
+                <!-- PANEL SVG -->
+                <div class="map-panel active" id="panel-svg">
+                    <div class="map-frame" id="mapFrame">
+                        <noscript>
+                            <img src="../assets/img/mapa.svg" alt="Mapa de Finca Bello Amanecer"
+                                style="width:100%;height:100%;object-fit:contain;">
+                        </noscript>
+                    </div>
+
+                    <div class="map-controls">
+                        <div class="zoom-group">
+                            <button class="map-control-btn" id="btnZoomIn" aria-label="Acercar" title="Acercar">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="map-control-btn" id="btnZoomOut" aria-label="Alejar" title="Alejar">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </div>
+                        <button class="map-control-btn" id="btnReset" aria-label="Restablecer"
+                            title="Restablecer vista">
+                            <i class="fa-solid fa-house"></i>
                         </button>
-                        <button class="map-control-btn" id="btnZoomOut" aria-label="Alejar" title="Alejar">
-                            <i class="fa-solid fa-minus"></i>
+                        <button class="map-control-btn" id="btnFullscreen" aria-label="Pantalla completa"
+                            title="Pantalla completa">
+                            <i class="fa-solid fa-expand"></i>
                         </button>
                     </div>
-                    <button class="map-control-btn" id="btnReset" aria-label="Restablecer" title="Restablecer vista">
-                        <i class="fa-solid fa-house"></i>
-                    </button>
-                    <button class="map-control-btn" id="btnFullscreen" aria-label="Pantalla completa"
-                        title="Pantalla completa">
-                        <i class="fa-solid fa-expand"></i>
-                    </button>
                 </div>
+
+                <!-- PANEL VISTA SATELITAL -->
+                <div class="map-panel" id="panel-google">
+                    <div class="maps-embed">
+                        <iframe src="https://www.google.com/maps/d/embed?mid=1bTiY7Z0IEnpklWBPp3pvxbdGkFZT84s"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Vista satelital de Finca Bello Amanecer" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- ==========================================
-             PANEL VISTA SATELITAL (GOOGLE MY MAPS)
-             ========================================== -->
-            <div class="map-panel" id="panel-google">
-                <div class="maps-embed">
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1bTiY7Z0IEnpklWBPp3pvxbdGkFZT84s"
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                        title="Vista satelital de Finca Bello Amanecer" allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-            <!-- ==========================================
-             BOTONES DE ACCIÓN
-             ========================================== -->
+            <!-- BOTONES DE ACCIÓN -->
             <div class="maps-actions">
                 <a class="maps-btn maps-btn-primary" href="https://maps.app.goo.gl/zoQ1e4HuevDbpUTR9" target="_blank"
                     rel="noopener noreferrer">
@@ -790,7 +823,7 @@
         </div>
     </footer>
 
-    <!-- svg-pan-zoom para el control del mapa SVG -->
+    <!-- svg-pan-zoom -->
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
 
     <script>
@@ -992,7 +1025,7 @@
         }
 
         /* ============================================
-           PESTAÑAS
+           PESTAÑAS — con fix del SVG que desaparecía
            ============================================ */
         function initTabs() {
             const tabButtons = document.querySelectorAll('.tab-btn');
@@ -1002,19 +1035,23 @@
                 btn.addEventListener('click', async () => {
                     if (btn.classList.contains('active')) return;
 
+                    // 1. Desactivar todas las pestañas y paneles
                     tabButtons.forEach(b => {
                         b.classList.remove('active');
                         b.setAttribute('aria-selected', 'false');
                     });
                     panels.forEach(p => p.classList.remove('active'));
 
+                    // 2. Activar la pestaña clickeada
                     btn.classList.add('active');
                     btn.setAttribute('aria-selected', 'true');
 
                     const targetView = btn.dataset.view;
-                    document.getElementById(`panel-${targetView}`).classList.add('active');
+                    const targetPanel = document.getElementById(`panel-${targetView}`);
 
+                    // 3. Si el SVG no está cargado y vamos a esa pestaña, lo cargamos
                     if (targetView === 'svg' && !mapaCargado) {
+                        targetPanel.classList.add('active');
                         const ok = await cargarMapa();
                         if (ok) {
                             initControles();
@@ -1023,14 +1060,43 @@
                             const ctrl = document.querySelector('.map-controls');
                             if (ctrl) ctrl.style.display = 'none';
                         }
+                        return;
                     }
 
+                    // 4. Mostrar el panel de destino
+                    targetPanel.classList.add('active');
+
+                    // 5. FIX: si volvemos al SVG, forzar redibujado
                     if (targetView === 'svg' && panZoomInstance) {
-                        setTimeout(() => {
-                            panZoomInstance.resize();
-                            panZoomInstance.fit();
-                            panZoomInstance.center();
-                        }, 50);
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                try {
+                                    const frame = document.getElementById('mapFrame');
+                                    // 5a. Forzar reflow
+                                    void frame.offsetWidth;
+
+                                    // 5b. Redimensionar y recentrar
+                                    panZoomInstance.resize();
+                                    panZoomInstance.fit();
+                                    panZoomInstance.center();
+
+                                    // 5c. Notificar a la ventana
+                                    window.dispatchEvent(new Event('resize'));
+
+                                    // 5d. Asegurar que el SVG sea visible
+                                    const svg = frame.querySelector('svg');
+                                    if (svg) {
+                                        svg.style.display = 'block';
+                                        svg.style.visibility = 'visible';
+                                        svg.style.opacity = '1';
+                                    }
+
+                                    actualizarBotonesZoom();
+                                } catch (err) {
+                                    console.warn('Error al redibujar el SVG:', err);
+                                }
+                            }, 150);
+                        });
                     }
                 });
             });
@@ -1048,7 +1114,7 @@
                 if (I18N[lang][key]) el.textContent = I18N[lang][key];
             });
 
-            // WhatsApp con mensaje dinámico según idioma
+            // WhatsApp con mensaje dinámico
             const wa = document.getElementById('linkWhatsApp');
             if (wa) {
                 const msg = encodeURIComponent(MENSAJES_WA[lang] || MENSAJES_WA.es);
@@ -1077,13 +1143,13 @@
                 btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
             });
 
-            // 2. Año en el footer
+            // 2. Año del footer
             document.getElementById('year').textContent = new Date().getFullYear();
 
             // 3. Pestañas
             initTabs();
 
-            // 4. Carga inicial del SVG (porque es la pestaña activa por defecto)
+            // 4. Carga inicial del SVG (pestaña activa por defecto)
             const tabActiva = document.querySelector('.tab-btn.active');
             if (tabActiva && tabActiva.dataset.view === 'svg') {
                 const ok = await cargarMapa();
