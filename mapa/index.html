@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mapa interactivo de Finca Bello Amanecer, Monteverde, Costa Rica.">
+    <title>Finca Bello Amanecer · Mapa de la propiedad</title>
+
+    <link rel="icon" href="../fav.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;800&family=Inter:wght@400;500;700&display=swap">
+
+    <style>
+        :root {
+            --color-fondo: #f7f3e8;
+            --color-fondo-card: #fdfbf5;
+            --color-texto: #1f2937;
+            --color-texto-suave: #6b7280;
+            --color-marco: #4a5a4a;
+            --color-acento: #7cb342;
+            --color-acento-hover: #5f8a2a;
+            --color-borde: #d6cdb9;
+            --color-blanco: #ffffff;
+            --sombra-suave: 0 2px 12px rgba(74, 90, 74, 0.08);
+            --sombra-media: 0 6px 24px rgba(74, 90, 74, 0.12);
+            --radio: 16px;
+            --radio-grande: 24px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(200, 190, 160, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(200, 190, 160, 0.05) 0%, transparent 50%);
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        header {
+            background: var(--color-fondo-card);
+            border-bottom: 2px solid var(--color-borde);
+            padding: 20px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .brand-text h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--color-texto);
+            margin-bottom: 2px;
+        }
+
+        .brand-text p {
+            font-size: 0.85rem;
+            color: var(--color-texto-suave);
+            font-weight: 500;
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            background: var(--color-fondo);
+            border: 2px solid var(--color-borde);
+            border-radius: 999px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: var(--color-texto-suave);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--color-texto);
+        }
+
+        .lang-btn.active {
+            background: var(--color-marco);
+            color: white;
+            box-shadow: 0 2px 6px rgba(74, 90, 74, 0.25);
+        }
+
+        /* ============================================
+           MAIN / HERO
+           ============================================ */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 32px 64px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--color-texto);
+            margin-bottom: 14px;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.6vw, 1.15rem);
+            color: var(--color-texto-suave);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           SECCIÓN DEL MAPA CON PESTAÑAS
+           ============================================ */
+        .map-section {
+            background: var(--color-fondo-card);
+            border: 3px solid var(--color-marco);
+            border-radius: var(--radio-grande);
+            padding: 20px;
+            box-shadow: var(--sombra-media);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .map-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--color-borde);
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--color-borde);
+            background: var(--color-fondo);
+            color: var(--color-texto-suave);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn i {
+            font-size: 0.95rem;
+            transition: transform 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--color-texto);
+            border-color: var(--color-marco);
+        }
+
+        .tab-btn:hover i {
+            transform: scale(1.15);
+        }
+
+        .tab-btn.active {
+            background: var(--color-marco);
+            color: white;
+            border-color: var(--color-marco);
+            box-shadow: 0 2px 8px rgba(74, 90, 74, 0.2);
+        }
+
+        .map-panel {
+            display: none;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radio);
+            overflow: hidden;
+            background: var(--color-fondo);
+        }
+
+        .map-panel.active {
+            display: block;
+        }
+
+        .map-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .map-frame:active {
+            cursor: grabbing;
+        }
+
+        .map-frame svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .maps-embed {
+            width: 100%;
+            height: 100%;
+            background: #e5e7eb;
+        }
+
+        .maps-embed iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ============================================
+           CONTROLES FLOTANTES
+           ============================================ */
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-panel:not(.active) .map-controls {
+            display: none;
+        }
+
+        .map-control-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--color-blanco);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            color: var(--color-texto);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .map-control-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .map-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-group {
+            display: flex;
+            flex-direction: column;
+            background: var(--color-blanco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .zoom-group .map-control-btn {
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .zoom-group .map-control-btn:first-child {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .map-control-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ============================================
+           BOTONES DE ACCIÓN
+           ============================================ */
+        .maps-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .maps-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .maps-btn i {
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .maps-btn:hover i {
+            transform: scale(1.15);
+        }
+
+        .maps-btn-primary {
+            background: var(--color-acento);
+            color: white;
+            border-color: var(--color-acento);
+            box-shadow: 0 1px 3px rgba(124, 179, 66, 0.3);
+        }
+
+        .maps-btn-primary:hover {
+            background: var(--color-acento-hover);
+            border-color: var(--color-acento-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.35);
+        }
+
+        .maps-btn-secondary {
+            background: var(--color-blanco);
+            color: var(--color-texto);
+            border-color: var(--color-borde);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .maps-btn-secondary:hover {
+            background: #f9f9f9;
+            border-color: var(--color-marco);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--color-fondo-card);
+            border-top: 2px solid var(--color-borde);
+            padding: 44px 32px 28px;
+            margin-top: 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-texto);
+            line-height: 1.2;
+        }
+
+        .footer-loc {
+            font-size: 0.9rem;
+            color: var(--color-texto-suave);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .social-btn i {
+            font-size: 1.15rem;
+            transition: transform 0.2s ease;
+        }
+
+        .social-btn:hover i {
+            transform: scale(1.15);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--sombra-media);
+        }
+
+        .social-wa {
+            background: #25D366;
+            border-color: #25D366;
+        }
+
+        .social-wa:hover {
+            background: #1ea952;
+            border-color: #1ea952;
+        }
+
+        .social-fb {
+            background: #1877F2;
+            border-color: #1877F2;
+        }
+
+        .social-fb:hover {
+            background: #0d5fd1;
+            border-color: #0d5fd1;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--color-texto-suave);
+            padding-top: 16px;
+            border-top: 1px solid var(--color-borde);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* ============================================
+           PANTALLA COMPLETA
+           ============================================ */
+        .map-panel:fullscreen {
+            background: var(--color-fondo);
+            border-radius: 0;
+            width: 100vw;
+            height: 100vh;
+            aspect-ratio: auto;
+        }
+
+        .map-panel:fullscreen .map-frame {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .map-panel:fullscreen .map-controls {
+            top: 20px;
+            right: 20px;
+        }
+
+        .map-panel:-webkit-full-screen {
+            background: var(--color-fondo);
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .map-panel:-webkit-full-screen .map-frame {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .maps-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            .brand-text h1 {
+                font-size: 1.3rem;
+            }
+
+            .brand-logo {
+                width: 44px;
+                height: 44px;
+            }
+
+            main {
+                padding: 32px 16px 48px;
+            }
+
+            .map-section {
+                padding: 14px;
+                border-width: 2px;
+            }
+
+            .map-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 12px;
+            }
+
+            .map-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-btn {
+                padding: 9px 16px;
+                font-size: 0.85rem;
+                flex-shrink: 0;
+            }
+
+            .map-panel {
+                aspect-ratio: 3 / 4;
+            }
+
+            .map-controls {
+                top: 14px;
+                right: 14px;
+                gap: 8px;
+            }
+
+            .map-control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .maps-btn {
+                padding: 13px 16px;
+                font-size: 0.9rem;
+            }
+
+            .lang-btn {
+                padding: 6px 14px;
+                font-size: 0.85rem;
+            }
+
+            footer {
+                padding: 32px 20px 24px;
+            }
+
+            .footer-name {
+                font-size: 1.3rem;
+            }
+
+            .social-btn {
+                padding: 11px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ============================================
+           ANIMACIONES
+           ============================================ */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero,
+        .map-section {
+            animation: fadeIn 0.7s ease-out;
+        }
+
+        .map-section {
+            animation-delay: 0.1s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="brand">
+                <img src="../assets/img/logo.png" alt="Finca Bello Amanecer" class="brand-logo">
+                <div class="brand-text">
+                    <h1>Finca Bello Amanecer</h1>
+                    <p data-i18n="ubicacion">Monteverde, Costa Rica</p>
+                </div>
+            </div>
+
+            <div class="lang-toggle" role="group" aria-label="Selector de idioma">
+                <button class="lang-btn active" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2 data-i18n="titulo">Mapa de la propiedad</h2>
+            <p data-i18n="subtitulo">Explora cada rincón de la finca o consulta la vista satelital.</p>
+        </section>
+
+        <section class="map-section">
+            <div class="map-tabs" role="tablist">
+                <button class="tab-btn active" data-view="svg" role="tab" aria-selected="true">
+                    <i class="fa-solid fa-draw-polygon"></i>
+                    <span data-i18n="tab_svg">Mapa de la propiedad</span>
+                </button>
+                <button class="tab-btn" data-view="google" role="tab" aria-selected="false">
+                    <i class="fa-solid fa-satellite"></i>
+                    <span data-i18n="tab_google">Vista satelital</span>
+                </button>
+            </div>
+
+            <!-- ==========================================
+             PANEL SVG (MAPA INTERACTIVO)
+             ========================================== -->
+            <div class="map-panel active" id="panel-svg">
+                <div class="map-frame" id="mapFrame">
+                    <noscript>
+                        <img src="../assets/img/mapa.svg" alt="Mapa de Finca Bello Amanecer"
+                            style="width:100%;height:100%;object-fit:contain;">
+                    </noscript>
+                </div>
+
+                <div class="map-controls">
+                    <div class="zoom-group">
+                        <button class="map-control-btn" id="btnZoomIn" aria-label="Acercar" title="Acercar">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button class="map-control-btn" id="btnZoomOut" aria-label="Alejar" title="Alejar">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </div>
+                    <button class="map-control-btn" id="btnReset" aria-label="Restablecer" title="Restablecer vista">
+                        <i class="fa-solid fa-house"></i>
+                    </button>
+                    <button class="map-control-btn" id="btnFullscreen" aria-label="Pantalla completa"
+                        title="Pantalla completa">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================
+             PANEL VISTA SATELITAL (GOOGLE MY MAPS)
+             ========================================== -->
+            <div class="map-panel" id="panel-google">
+                <div class="maps-embed">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1bTiY7Z0IEnpklWBPp3pvxbdGkFZT84s"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Vista satelital de Finca Bello Amanecer" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- ==========================================
+             BOTONES DE ACCIÓN
+             ========================================== -->
+            <div class="maps-actions">
+                <a class="maps-btn maps-btn-primary" href="https://maps.app.goo.gl/zoQ1e4HuevDbpUTR9" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-solid fa-diamond-turn-right"></i>
+                    <span data-i18n="btn_como_llegar">Cómo llegar</span>
+                </a>
+
+                <a class="maps-btn maps-btn-secondary"
+                    href="https://www.google.com/maps/d/viewer?mid=1bTiY7Z0IEnpklWBPp3pvxbdGkFZT84s" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-solid fa-up-right-from-square"></i>
+                    <span data-i18n="btn_abrir_google">Abrir en Google Maps</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-name" data-i18n="footer_contacto">Contáctanos</p>
+            <p class="footer-loc" data-i18n="ubicacion">Monteverde, Costa Rica</p>
+
+            <div class="footer-social">
+                <a class="social-btn social-wa" id="linkWhatsApp" href="https://wa.me/50684459414" target="_blank"
+                    rel="noopener noreferrer" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+
+                <a class="social-btn social-fb" href="https://www.facebook.com/profile.php?id=100083870795836"
+                    target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+
+            <p class="footer-copy">
+                © <span id="year">2025</span> Finca Bello Amanecer
+            </p>
+        </div>
+    </footer>
+
+    <!-- svg-pan-zoom para el control del mapa SVG -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+
+    <script>
+        /* ============================================
+           CONFIGURACIÓN
+           ============================================ */
+        const WHATSAPP_NUMBER = '50684459414';
+
+        /* ============================================
+           TRADUCCIONES
+           ============================================ */
+        const I18N = {
+            es: {
+                ubicacion: 'Monteverde, Costa Rica',
+                titulo: 'Mapa de la propiedad',
+                subtitulo: 'Explora cada rincón de la finca o consulta la vista satelital.',
+                tab_svg: 'Mapa de la propiedad',
+                tab_google: 'Vista satelital',
+                btn_como_llegar: 'Cómo llegar',
+                btn_abrir_google: 'Abrir en Google Maps',
+                footer_contacto: 'Contáctanos',
+            },
+            en: {
+                ubicacion: 'Monteverde, Costa Rica',
+                titulo: 'Property Map',
+                subtitulo: 'Explore every corner of the farm or check the satellite view.',
+                tab_svg: 'Property map',
+                tab_google: 'Satellite view',
+                btn_como_llegar: 'Get directions',
+                btn_abrir_google: 'Open in Google Maps',
+                footer_contacto: 'Contact us',
+            },
+        };
+
+        const MENSAJES_WA = {
+            es: 'Hola, quiero información sobre la finca',
+            en: 'Hi, I would like information about the farm',
+        };
+
+        /* ============================================
+           ESTADO GLOBAL
+           ============================================ */
+        let panZoomInstance = null;
+        let mapaCargado = false;
+
+        /* ============================================
+           CARGA DEL SVG
+           ============================================ */
+        async function cargarMapa() {
+            if (mapaCargado) return true;
+            const frame = document.getElementById('mapFrame');
+
+            try {
+                const res = await fetch('../assets/img/mapa.svg');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const svgText = await res.text();
+
+                const noscript = frame.querySelector('noscript');
+                frame.innerHTML = '';
+                if (noscript) frame.appendChild(noscript);
+
+                frame.insertAdjacentHTML('beforeend', svgText);
+
+                const svg = frame.querySelector('svg');
+                if (!svg) throw new Error('SVG no encontrado tras insertar');
+
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.setAttribute('width', '100%');
+                svg.setAttribute('height', '100%');
+                svg.style.display = 'block';
+                svg.style.touchAction = 'none';
+
+                panZoomInstance = svgPanZoom(svg, {
+                    zoomEnabled: true,
+                    controlIconsEnabled: false,
+                    fit: true,
+                    center: true,
+                    minZoom: 0.8,
+                    maxZoom: 15,
+                    zoomScaleSensitivity: 0.3,
+                    dblClickZoomEnabled: true,
+                    mouseWheelZoomEnabled: true,
+                    preventMouseEventsDefault: true,
+                    contain: false,
+                });
+
+                window.addEventListener('resize', () => {
+                    if (!panZoomInstance) return;
+                    panZoomInstance.resize();
+                    panZoomInstance.fit();
+                    panZoomInstance.center();
+                });
+
+                panZoomInstance.setOnZoom(() => actualizarBotonesZoom());
+
+                mapaCargado = true;
+                return true;
+            } catch (e) {
+                console.error('Error cargando el SVG:', e);
+                frame.innerHTML = `
+            <img src="../assets/img/mapa.svg"
+                 alt="Mapa de Finca Bello Amanecer"
+                 style="width:100%;height:100%;object-fit:contain;">
+        `;
+                return false;
+            }
+        }
+
+        /* ============================================
+           CONTROLES DE ZOOM
+           ============================================ */
+        function actualizarBotonesZoom() {
+            if (!panZoomInstance) return;
+            const zoom = panZoomInstance.getZoom();
+            const btnIn = document.getElementById('btnZoomIn');
+            const btnOut = document.getElementById('btnZoomOut');
+            if (btnIn) btnIn.disabled = zoom >= 14.9;
+            if (btnOut) btnOut.disabled = zoom <= 0.81;
+        }
+
+        function initControles() {
+            const btnIn = document.getElementById('btnZoomIn');
+            const btnOut = document.getElementById('btnZoomOut');
+            const btnReset = document.getElementById('btnReset');
+            const btnFs = document.getElementById('btnFullscreen');
+            const panelSvg = document.getElementById('panel-svg');
+
+            if (btnIn) {
+                btnIn.addEventListener('click', () => {
+                    if (panZoomInstance) {
+                        panZoomInstance.zoomIn();
+                        actualizarBotonesZoom();
+                    }
+                });
+            }
+
+            if (btnOut) {
+                btnOut.addEventListener('click', () => {
+                    if (panZoomInstance) {
+                        panZoomInstance.zoomOut();
+                        actualizarBotonesZoom();
+                    }
+                });
+            }
+
+            if (btnReset) {
+                btnReset.addEventListener('click', () => {
+                    if (panZoomInstance) {
+                        panZoomInstance.resetZoom();
+                        panZoomInstance.fit();
+                        panZoomInstance.center();
+                        actualizarBotonesZoom();
+                    }
+                });
+            }
+
+            if (btnFs && panelSvg) {
+                btnFs.addEventListener('click', () => {
+                    const isFs = document.fullscreenElement ||
+                        document.webkitFullscreenElement ||
+                        document.msFullscreenElement;
+
+                    if (!isFs) {
+                        const req = panelSvg.requestFullscreen ||
+                            panelSvg.webkitRequestFullscreen ||
+                            panelSvg.msRequestFullscreen;
+                        if (req) req.call(panelSvg);
+                    } else {
+                        const exit = document.exitFullscreen ||
+                            document.webkitExitFullscreen ||
+                            document.msExitFullscreen;
+                        if (exit) exit.call(document);
+                    }
+                });
+
+                const onFsChange = () => {
+                    const isFs = document.fullscreenElement ||
+                        document.webkitFullscreenElement ||
+                        document.msFullscreenElement;
+
+                    btnFs.innerHTML = isFs
+                        ? '<i class="fa-solid fa-compress"></i>'
+                        : '<i class="fa-solid fa-expand"></i>';
+
+                    if (panZoomInstance) {
+                        setTimeout(() => {
+                            panZoomInstance.resize();
+                            panZoomInstance.fit();
+                            panZoomInstance.center();
+                        }, 150);
+                    }
+                };
+
+                document.addEventListener('fullscreenchange', onFsChange);
+                document.addEventListener('webkitfullscreenchange', onFsChange);
+                document.addEventListener('MSFullscreenChange', onFsChange);
+            }
+        }
+
+        /* ============================================
+           PESTAÑAS
+           ============================================ */
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const panels = document.querySelectorAll('.map-panel');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    if (btn.classList.contains('active')) return;
+
+                    tabButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    panels.forEach(p => p.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+
+                    const targetView = btn.dataset.view;
+                    document.getElementById(`panel-${targetView}`).classList.add('active');
+
+                    if (targetView === 'svg' && !mapaCargado) {
+                        const ok = await cargarMapa();
+                        if (ok) {
+                            initControles();
+                            actualizarBotonesZoom();
+                        } else {
+                            const ctrl = document.querySelector('.map-controls');
+                            if (ctrl) ctrl.style.display = 'none';
+                        }
+                    }
+
+                    if (targetView === 'svg' && panZoomInstance) {
+                        setTimeout(() => {
+                            panZoomInstance.resize();
+                            panZoomInstance.fit();
+                            panZoomInstance.center();
+                        }, 50);
+                    }
+                });
+            });
+        }
+
+        /* ============================================
+           IDIOMA
+           ============================================ */
+        function setLanguage(lang) {
+            if (!I18N[lang]) return;
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (I18N[lang][key]) el.textContent = I18N[lang][key];
+            });
+
+            // WhatsApp con mensaje dinámico según idioma
+            const wa = document.getElementById('linkWhatsApp');
+            if (wa) {
+                const msg = encodeURIComponent(MENSAJES_WA[lang] || MENSAJES_WA.es);
+                wa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            try { localStorage.setItem('finca-lang', lang); } catch (e) { }
+        }
+
+        /* ============================================
+           INICIALIZACIÓN
+           ============================================ */
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Idioma
+            let lang = 'es';
+            try {
+                const guardado = localStorage.getItem('finca-lang');
+                if (guardado && I18N[guardado]) lang = guardado;
+                else if (navigator.language.toLowerCase().startsWith('en')) lang = 'en';
+            } catch (e) { }
+            setLanguage(lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+            });
+
+            // 2. Año en el footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 3. Pestañas
+            initTabs();
+
+            // 4. Carga inicial del SVG (porque es la pestaña activa por defecto)
+            const tabActiva = document.querySelector('.tab-btn.active');
+            if (tabActiva && tabActiva.dataset.view === 'svg') {
+                const ok = await cargarMapa();
+                if (ok) {
+                    initControles();
+                    actualizarBotonesZoom();
+                } else {
+                    const ctrl = document.querySelector('.map-controls');
+                    if (ctrl) ctrl.style.display = 'none';
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
